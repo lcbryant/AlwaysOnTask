@@ -5,6 +5,6 @@ data class Task(
     val label: String? = "New task",
     val notes: String? = "Write your notes here",
     val completed: Boolean = false,
-    )
+)
 
 

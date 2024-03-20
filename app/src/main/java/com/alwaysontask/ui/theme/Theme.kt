@@ -78,7 +78,7 @@ private val LightColorScheme = lightColorScheme(
     surfaceTint = md_theme_light_surfaceTint,
     outlineVariant = md_theme_light_outlineVariant,
     scrim = md_theme_light_scrim,
-    )
+)
 
 @Composable
 fun AlwaysOnTaskTheme(
