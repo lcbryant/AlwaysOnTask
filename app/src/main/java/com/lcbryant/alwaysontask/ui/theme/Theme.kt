@@ -1,4 +1,4 @@
-package com.alwaysontask.ui.theme
+package com.lcbryant.alwaysontask.ui.theme
 
 import android.app.Activity
 import android.os.Build

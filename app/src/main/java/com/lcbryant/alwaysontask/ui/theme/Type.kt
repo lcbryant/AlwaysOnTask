@@ -1,4 +1,4 @@
-package com.alwaysontask.ui.theme
+package com.lcbryant.alwaysontask.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

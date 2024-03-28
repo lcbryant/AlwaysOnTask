@@ -1,4 +1,4 @@
-package com.alwaysontask.viewModels
+package com.lcbryant.alwaysontask.viewModels
 
 import androidx.lifecycle.ViewModel
 import java.text.SimpleDateFormat

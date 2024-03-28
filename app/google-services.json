@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745621016991",
+    "project_id": "alwaysontask",
+    "storage_bucket": "alwaysontask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745621016991:android:9a40f011d563f1475f2daa",
+        "android_client_info": {
+          "package_name": "com.lcbryant.alwaysontask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIBUwwCoiL7k87tQfACvYwQhE_X9y9IKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

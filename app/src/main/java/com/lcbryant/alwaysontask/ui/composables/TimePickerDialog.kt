@@ -1,4 +1,4 @@
-package com.alwaysontask.ui.composables
+package com.lcbryant.alwaysontask.ui.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

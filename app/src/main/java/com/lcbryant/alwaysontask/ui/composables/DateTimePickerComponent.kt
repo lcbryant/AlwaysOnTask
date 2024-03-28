@@ -1,4 +1,4 @@
-package com.alwaysontask.ui.composables
+package com.lcbryant.alwaysontask.ui.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberDatePickerState
@@ -105,7 +105,7 @@ fun DateTimePickerComponent(
             }
         }
 
-        Divider(modifier = modifier.padding(24.dp))
+        HorizontalDivider(modifier = modifier.padding(24.dp))
 
         Row {
             Text(

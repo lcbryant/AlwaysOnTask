@@ -1,9 +1,9 @@
-package com.alwaysontask
+package com.lcbryant.alwaysontask
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.alwaysontask.ui.theme.AlwaysOnTaskTheme
+import com.lcbryant.alwaysontask.ui.theme.AlwaysOnTaskTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

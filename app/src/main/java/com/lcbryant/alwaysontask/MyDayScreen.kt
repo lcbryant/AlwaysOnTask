@@ -1,4 +1,4 @@
-package com.alwaysontask
+package com.lcbryant.alwaysontask
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -6,8 +6,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.alwaysontask.ui.composables.DateTimePickerComponent
-import com.alwaysontask.viewModels.MyDayViewModel
+import com.lcbryant.alwaysontask.ui.composables.DateTimePickerComponent
+import com.lcbryant.alwaysontask.viewModels.MyDayViewModel
 
 @Composable
 fun MyDayScreen(
