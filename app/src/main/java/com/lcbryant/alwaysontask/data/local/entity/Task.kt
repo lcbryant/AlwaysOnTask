@@ -1,5 +1,6 @@
 package com.lcbryant.alwaysontask.data.local.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,6 +10,6 @@ data class Task(
     val content: String,
     val notes: String,
     val completed: Boolean,
-    val timeCreated: String,
-    val scheduledDate: Long,
+    @ColumnInfo("time_created") val timeCreated: String,
+    @ColumnInfo("scheduled_date") val scheduledDate: Long,
 )
