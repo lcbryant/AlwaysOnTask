@@ -12,7 +12,12 @@
           "package_name": "com.lcbryant.alwaysontask"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "745621016991-od9asshtmp9fm07v59jvthrm42jmou0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBIBUwwCoiL7k87tQfACvYwQhE_X9y9IKs"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745621016991-od9asshtmp9fm07v59jvthrm42jmou0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

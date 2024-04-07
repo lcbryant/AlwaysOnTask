@@ -1,3 +1,72 @@
 <resources>
     <string name="app_name">Always On Task</string>
+
+    <string name="login_login">Log in</string>
+    <string name="login_email">your.email@provider.com</string>
+    <string name="login_email_invalid">Email invalid</string>
+    <string name="login_password">Password</string>
+
+    <string name="signup">Sign Up</string>
+
+    <string name="setting_title">Main menu</string>
+    <string name="setting_logout">Log out</string>
+    <string name="setting_logout_confirm">Log out?</string>
+
+    <string name="activity_input_bar_hint">What\'s on the agenda?</string>
+
+    <string name="daily_plan_empty_header">Nothing Planned for Today</string>
+    <string name="daily_plan_empty_body">There are no activities in your calendar. Tap the + to add some activities!</string>
+
+    <string name="activity_timer_starts_in">Starts in %1$s min</string>
+
+    <string name="time_format">%1$s</string>
+
+    <string name="activity_completed">Completed</string>
+    <string name="activity_set_time">Set Time</string>
+    <string name="activity_schedule">Schedule Activity</string>
+    <string name="activity_repeat">Repeat?</string>
+    <string name="activity_cancel">Cancel</string>
+    <string name="activity_duplicate">Duplicate</string>
+    <string name="activity_delete">Delete</string>
+    <string name="activity_reschedule">Reschedule</string>
+    <string name="activity_skip">Skip</string>
+    <string name="activity_add">Add</string>
+    <string name="activity_add_subtask">Add Subtask</string>
+    <string name="activity_add_due_date">Set Due Date</string>
+    <string name="activity_duration_remaining">Left</string>
+    <string name="activity_add_notes_placeholder">Write notes here</string>
+
+    <string name="activity_duration_timer_toggle_button_start">Start</string>
+    <string name="activity_duration_timer_toggle_button_pause">Pause</string>
+    <string name="activity_duration_timer_toggle_button_restart">Restart</string>
+
+    <string name="activity_item_info">%1$s of %2$s</string>
+    <string name="activity_in_progress_date_creation_second">Created a few moments ago</string>
+    <string name="activity_in_progress_date_creation_minute">Created %1$s minutes ago</string>
+    <string name="activity_in_progress_date_creation_hour">Created %1$s hours ago</string>
+    <string name="activity_in_progress_date_creation_yesterday">Created yesterday</string>
+    <string name="activity_in_progress_date_creation_date">Created %1$s</string>
+    <string name="activity_complete_date_today">Completed today</string>
+    <string name="activity_complete_date_yesterday">Completed yesterday</string>
+    <string name="activity_complete_date">Completed on %1$s</string>
+    <string name="activity_note_update_second">Updated a few moments ago</string>
+    <string name="activity_note_update_minute">Updated %1$s hours ago</string>
+    <string name="activity_note_update_hour">Updated %1$s hours ago</string>
+    <string name="activity_note_update_yesterday">Updated yesterday</string>
+    <string name="activity_note_update_date">Updated on %1$s</string>
+
+    <string name="activity_today">Today</string>
+    <string name="activity_tomorrow">Tomorrow</string>
+    <string name="activity_yesterday">Yesterday</string>
+    <string name="activity_due_date_today">Due today</string>
+    <string name="activity_due_date_tomorrow">Due tomorrow</string>
+    <string name="activity_due_date_yesterday">Due yesterday</string>
+    <string name="activity_due_date">Due %1$s</string>
+
+    <string name="weekly_nav_today_button">Today</string>
+
+    <string name="bottom_nav_all_tasks">All Tasks</string>
+    <string name="bottom_nav_daily_plan">My Day</string>
+    <string name="bottom_nav_current_activity">Right Now</string>
+    <string name="bottom_nav_profile">Profile</string>
 </resources>

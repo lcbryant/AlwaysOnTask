@@ -5,14 +5,15 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.alwaysontask"
+    namespace = "com.lcbryant.alwaysontask"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.alwaysontask"
+        applicationId = "com.lcbryant.alwaysontask"
         minSdk = 30
         targetSdk = 34
         versionCode = 1
@@ -73,6 +74,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Dagger Hilt
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
+
     // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
@@ -84,4 +89,6 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.analytics)
+
+    implementation(libs.androidx.navigation.compose)
 }

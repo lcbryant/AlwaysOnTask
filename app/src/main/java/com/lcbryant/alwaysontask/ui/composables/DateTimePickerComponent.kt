@@ -3,13 +3,10 @@ package com.lcbryant.alwaysontask.ui.composables
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
@@ -67,7 +64,7 @@ fun DateTimePickerComponent(
     }
 
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -79,11 +76,6 @@ fun DateTimePickerComponent(
                 modifier = modifier.padding(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Date Picker",
-                    modifier = modifier.padding(bottom = 8.dp)
-                )
-
                 DatePickerButton(
                     modifier,
                     onClick = { toggleDatePicker() }
@@ -94,30 +86,11 @@ fun DateTimePickerComponent(
                 modifier = modifier.padding(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Time Picker",
-                    modifier = modifier.padding(bottom = 8.dp)
-                )
                 TimePickerButton(
                     modifier,
                     onClick = { toggleTimePicker() }
                 )
             }
-        }
-
-        HorizontalDivider(modifier = modifier.padding(24.dp))
-
-        Row {
-            Text(
-                text = "Date: ${selectedDate.value}",
-                modifier = modifier.padding(bottom = 16.dp)
-            )
-        }
-        Row {
-            Text(
-                text = "Time: ${selectedTime.value}",
-                modifier = modifier.padding(bottom = 16.dp)
-            )
         }
     }
 

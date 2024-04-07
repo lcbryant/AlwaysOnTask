@@ -1,13 +1,10 @@
-package com.lcbryant.alwaysontask.data.network.model
+package com.lcbryant.alwaysontask.data
 
-import com.google.firebase.firestore.DocumentId
-
-
-data class NetworkTask(
-    @DocumentId val id: String = "",
+data class TodoTask(
     val localId: Int,
-    val userId: String = "",
+    val firebaseId: String = "",
     val localUserId: Int,
+    val firebaseUserId: String = "",
     val content: String,
     val notes: String,
     val completed: Boolean,
