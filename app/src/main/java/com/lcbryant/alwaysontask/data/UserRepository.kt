@@ -17,7 +17,6 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val userDao: UserDao,
     private val firestore: FirebaseFirestore,
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
 ) {
     // exposing data from single source of truth, the local database
     private val user = userDao.observeAll().asLiveData()
