@@ -16,16 +16,11 @@ class MyDayViewModel : ViewModel() {
         private set
     var showTimePicker by mutableStateOf(false)
         private set
-    var selectedDate by mutableStateOf("")
-        private set
-    var selectedTime by mutableStateOf("")
-        private set
 
-    var todoTaskContent by mutableStateOf("")
-        private set
-
-    var todoTaskNotes by mutableStateOf("")
-        private set
+    private var selectedDate by mutableStateOf("")
+    private var selectedTime by mutableStateOf("")
+    private var todoTaskContent by mutableStateOf("")
+    private var todoTaskNotes by mutableStateOf("")
 
     fun toggleBottomSheet() {
         showBottomSheet = !showBottomSheet
@@ -43,8 +38,8 @@ class MyDayViewModel : ViewModel() {
         selectedDate = date
     }
 
-    fun onTimeSelected(time: String) {
-        selectedTime = time
+    fun onTimeSelected(hour: Int, min: Int, is24hr: Boolean) {
+        selectedTime = "$hour:$min"
     }
 
     fun onTaskContentChanged(content: String) {

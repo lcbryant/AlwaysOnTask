@@ -105,7 +105,10 @@ fun MyDayScreen(
                 confirmButton = {
                     ConfirmButton(
                         modifier = Modifier,
-                        onClick = {}
+                        onClick = {
+                            myDayViewModel.onDateSelected(datePickerState.selectedDateMillis.toString())
+                            myDayViewModel.toggleDatePicker()
+                        }
                     )
                 },
                 dismissButton = {
@@ -122,12 +125,14 @@ fun MyDayScreen(
         if (myDayViewModel.showTimePicker) {
             TimePickerDialog(
                 modifier = Modifier,
-                title = "Select Time",
                 onDismissRequest = { myDayViewModel.toggleTimePicker() },
                 confirmButton = {
                     ConfirmButton(
                         modifier = Modifier,
-                        onClick = {}
+                        onClick = {
+                            myDayViewModel.onTimeSelected(timePickerState.hour, timePickerState.minute, timePickerState.is24hour)
+                            myDayViewModel.toggleTimePicker()
+                        }
                     )
                 },
                 dismissButton = {
