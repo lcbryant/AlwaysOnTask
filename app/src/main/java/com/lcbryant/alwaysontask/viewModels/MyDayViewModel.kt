@@ -1,34 +1,42 @@
 package com.lcbryant.alwaysontask.viewModels
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
-class MyDayViewModel(
-    dateFormatter: SimpleDateFormat = SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.getDefault())
-) : ViewModel() {
-    private val _dateFormatter = dateFormatter
-
+class MyDayViewModel : ViewModel() {
     private val _calendar = Calendar.getInstance()
-    private val _today = _calendar.timeInMillis
-    val dateFormatter: SimpleDateFormat get() = _dateFormatter
-    val calendar: Calendar get() = _calendar
 
-    fun getCurrentFormattedDate(): String {
-        return _dateFormatter.format(_calendar.timeInMillis).dropLast(9)
+    var showBottomSheet by mutableStateOf(false)
+        private set
+    var showDatePicker by mutableStateOf(false)
+        private set
+    var showTimePicker by mutableStateOf(false)
+        private set
+    var selectedDate by mutableStateOf("")
+        private set
+    var selectedTime by mutableStateOf("")
+        private set
+
+    fun toggleBottomSheet() {
+        showBottomSheet = !showBottomSheet
     }
 
-    fun formatDate(date: Long): String {
-        return _dateFormatter.format(date).dropLast(9)
+    fun toggleDatePicker() {
+        showDatePicker = !showDatePicker
     }
 
-    fun formatTime(hour: Int, minute: Int, is24hour: Boolean): String {
-        return if (is24hour) {
-            "$hour:$minute"
-        } else {
-            val h = if (hour > 12) hour - 12 else hour
-            "$h:$minute ${if (hour < 12) "AM" else "PM"}"
-        }
+    fun toggleTimePicker() {
+        showTimePicker = !showTimePicker
+    }
+
+    fun onDateSelected(date: String) {
+        selectedDate = date
+    }
+
+    fun onTimeSelected(time: String) {
+        selectedTime = time
     }
 }

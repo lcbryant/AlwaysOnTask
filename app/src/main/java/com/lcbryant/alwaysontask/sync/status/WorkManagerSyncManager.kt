@@ -2,7 +2,7 @@ package com.lcbryant.alwaysontask.sync.status
 
 import android.content.Context
 import androidx.work.WorkManager
-import com.lcbryant.alwaysontask.data.common.SyncManager
+import com.lcbryant.alwaysontask.core.data.common.SyncManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

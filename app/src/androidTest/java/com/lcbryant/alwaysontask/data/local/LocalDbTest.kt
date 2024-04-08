@@ -6,9 +6,10 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lcbryant.alwaysontask.common.TimeUtil
-import com.lcbryant.alwaysontask.data.local.dao.TaskDao
-import com.lcbryant.alwaysontask.data.local.dao.UserDao
-import com.lcbryant.alwaysontask.data.local.entity.UserEntity
+import com.lcbryant.alwaysontask.core.data.local.LocalDatabase
+import com.lcbryant.alwaysontask.core.data.local.dao.TaskDao
+import com.lcbryant.alwaysontask.core.data.local.dao.UserDao
+import com.lcbryant.alwaysontask.core.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
