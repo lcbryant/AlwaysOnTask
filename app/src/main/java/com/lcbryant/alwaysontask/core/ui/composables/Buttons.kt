@@ -208,26 +208,6 @@ fun DismissButton(
 }
 
 @Composable
-fun DatePickerButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    IconButton(onClick = onClick, modifier = modifier.size(24.dp)) {
-        Icon(
-            painter = painterResource(id = R.drawable.twotone_insert_invitation_24),
-            contentDescription = "Date picker"
-        )
-    }
-}
-
-@Composable
-fun TimePickerButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    IconButton(onClick = onClick, modifier = modifier.size(24.dp)) {
-        Icon(
-            painter = painterResource(id = R.drawable.twotone_timer_24),
-            contentDescription = "time picker"
-        )
-    }
-}
-
-@Composable
 fun StartTaskDurationButton(
     modifier: Modifier = Modifier,
     fontSizeRange: FontSizeRange = FontSizeRange(2.sp, 16.sp),
@@ -245,7 +225,7 @@ fun StartTaskDurationButton(
         )
 
         Icon(
-            painter = painterResource(R.drawable.twotone_play_arrow_24),
+            painter = painterResource(R.drawable.rounded_play_arrow_24),
             contentDescription = "Start",
         )
     }
