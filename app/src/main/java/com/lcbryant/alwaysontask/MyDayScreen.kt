@@ -23,7 +23,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.lcbryant.alwaysontask.core.data.TodoTask
 import com.lcbryant.alwaysontask.core.ui.composables.ConfirmButton
 import com.lcbryant.alwaysontask.core.ui.composables.DismissButton
 import com.lcbryant.alwaysontask.core.ui.composables.TimePickerDialog
@@ -42,7 +41,6 @@ fun MyDayScreen(
     containerColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = MaterialTheme.colorScheme.onBackground,
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    addTaskCallback: (TodoTask) -> Unit,
     myDayViewModel: MyDayViewModel = viewModel(),
 ) {
     val sheetState = rememberModalBottomSheetState()
@@ -89,7 +87,10 @@ fun MyDayScreen(
                 onDismissRequest = {
                     hideSheetCallback()
                 },
-                addTaskCallback = addTaskCallback,
+                addTaskCallback = {
+                    myDayViewModel.onAddTask()
+                    hideSheetCallback()
+                },
                 hideSheetCallback = hideSheetCallback,
                 toggleTimePicker = { myDayViewModel.toggleTimePicker() },
                 toggleDatePicker = { myDayViewModel.toggleDatePicker() },
