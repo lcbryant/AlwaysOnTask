@@ -1,6 +1,17 @@
 package com.lcbryant.alwaysontask.common
 
+import java.time.LocalDateTime
 import java.util.Calendar
+
+interface DateTimeProvider {
+    fun now(): LocalDateTime
+}
+
+class DateTimeProviderImpl : DateTimeProvider {
+    override fun now(): LocalDateTime {
+        return LocalDateTime.now()
+    }
+}
 
 class TimeUtil {
     private val calendar = Calendar.getInstance()

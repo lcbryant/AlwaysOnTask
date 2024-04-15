@@ -3,8 +3,9 @@ package com.lcbryant.alwaysontask.core.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.lcbryant.alwaysontask.core.data.common.USER_TABLE_NAME
 
-@Entity(tableName = "user")
+@Entity(tableName = USER_TABLE_NAME)
 data class UserEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo("firebase_id") val firebaseId: String? = "",

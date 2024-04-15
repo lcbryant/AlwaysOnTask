@@ -1,10 +1,10 @@
 package com.lcbryant.alwaysontask.core.extension
 
-import com.lcbryant.alwaysontask.core.data.NameTuple
-import com.lcbryant.alwaysontask.core.data.User
 import com.lcbryant.alwaysontask.core.data.local.entity.UserEntity
 import com.lcbryant.alwaysontask.core.data.network.model.NetworkUser
 import com.lcbryant.alwaysontask.core.data.network.model.NetworkUserName
+import com.lcbryant.alwaysontask.core.model.NameTuple
+import com.lcbryant.alwaysontask.core.model.User
 
 fun NetworkUser.asUserEntity(): UserEntity {
     return UserEntity(

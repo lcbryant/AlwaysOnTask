@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.core.data.network
+package com.lcbryant.alwaysontask.core.database
 
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore

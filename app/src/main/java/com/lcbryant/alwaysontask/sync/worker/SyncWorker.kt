@@ -5,8 +5,8 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
-import com.lcbryant.alwaysontask.core.data.TodoTaskRepository
-import com.lcbryant.alwaysontask.core.data.UserRepository
+import com.lcbryant.alwaysontask.core.data.repository.TodoTaskRepository
+import com.lcbryant.alwaysontask.core.data.repository.UserRepository
 import com.lcbryant.alwaysontask.sync.status.SyncSubscriber
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

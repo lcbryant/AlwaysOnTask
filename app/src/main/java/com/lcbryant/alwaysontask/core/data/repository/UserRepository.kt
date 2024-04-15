@@ -1,20 +1,20 @@
-package com.lcbryant.alwaysontask.core.data
+package com.lcbryant.alwaysontask.core.data.repository
 
 import androidx.lifecycle.asLiveData
-import com.google.firebase.firestore.FirebaseFirestore
 import com.lcbryant.alwaysontask.core.data.local.dao.UserDao
 import com.lcbryant.alwaysontask.core.data.local.entity.NameTuple
 import com.lcbryant.alwaysontask.core.data.local.entity.UserEntity
 import com.lcbryant.alwaysontask.core.data.network.model.NetworkUser
 import com.lcbryant.alwaysontask.core.extension.asNetworkUser
 import com.lcbryant.alwaysontask.core.extension.asUserEntity
+import com.lcbryant.alwaysontask.core.model.User
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
 class UserRepository @Inject constructor(
     private val userDao: UserDao,
-    private val firestore: FirebaseFirestore,
+    // private val firestore: FirebaseFirestore,
 ) {
     // exposing data from single source of truth, the local database
     private val user = userDao.observeAll().asLiveData()

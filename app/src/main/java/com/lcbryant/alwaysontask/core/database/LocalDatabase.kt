@@ -1,17 +1,20 @@
-package com.lcbryant.alwaysontask.core.data.local
+package com.lcbryant.alwaysontask.core.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.lcbryant.alwaysontask.core.data.local.dao.TaskDao
+import androidx.room.TypeConverters
+import com.lcbryant.alwaysontask.core.data.common.DATABASE_NAME
+import com.lcbryant.alwaysontask.core.data.local.dao.TodoTaskDao
 import com.lcbryant.alwaysontask.core.data.local.dao.UserDao
-import com.lcbryant.alwaysontask.core.data.local.entity.TaskEntity
+import com.lcbryant.alwaysontask.core.data.local.entity.TodoTaskEntity
 import com.lcbryant.alwaysontask.core.data.local.entity.UserEntity
 
-@Database(entities = [TaskEntity::class, UserEntity::class], version = 1, exportSchema = false)
+@Database(entities = [TodoTaskEntity::class, UserEntity::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class LocalDatabase : RoomDatabase() {
-    abstract fun taskDao(): TaskDao
+    abstract fun todoTaskDao(): TodoTaskDao
     abstract fun userDao(): UserDao
 
     companion object {
@@ -25,7 +28,7 @@ abstract class LocalDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LocalDatabase::class.java,
-                    "task_db"
+                    DATABASE_NAME
                 ).build()
 
                 INSTANCE = instance

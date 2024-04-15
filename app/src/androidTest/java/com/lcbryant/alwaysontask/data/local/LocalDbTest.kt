@@ -5,11 +5,15 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.lcbryant.alwaysontask.common.DateTimeProviderImpl
 import com.lcbryant.alwaysontask.common.TimeUtil
-import com.lcbryant.alwaysontask.core.data.local.LocalDatabase
-import com.lcbryant.alwaysontask.core.data.local.dao.TaskDao
+import com.lcbryant.alwaysontask.core.data.local.dao.TodoTaskDao
 import com.lcbryant.alwaysontask.core.data.local.dao.UserDao
 import com.lcbryant.alwaysontask.core.data.local.entity.UserEntity
+import com.lcbryant.alwaysontask.core.data.repository.TodoTaskRepository
+import com.lcbryant.alwaysontask.core.data.repository.UserRepository
+import com.lcbryant.alwaysontask.core.database.LocalDatabase
+import com.lcbryant.alwaysontask.core.model.TodoTask
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
@@ -21,9 +25,11 @@ import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class LocalDbTest {
-    private lateinit var taskDao: TaskDao
+    private lateinit var todoTaskDao: TodoTaskDao
     private lateinit var userDao: UserDao
     private lateinit var db: LocalDatabase
+    private lateinit var todoRepo: TodoTaskRepository
+    private lateinit var userRepo: UserRepository
 
     @Before
     fun createDb() {
@@ -33,7 +39,9 @@ class LocalDbTest {
             LocalDatabase::class.java
         ).build()
         userDao = db.userDao()
-        taskDao = db.taskDao()
+        todoTaskDao = db.todoTaskDao()
+        todoRepo = TodoTaskRepository(todoTaskDao)
+        userRepo = UserRepository(userDao)
     }
 
     @After
@@ -135,5 +143,24 @@ class LocalDbTest {
         val userFlowAfterDelete = userDao.observeAll()
         val userReadAfterDelete = userFlowAfterDelete.first()
         assertThat(userReadAfterDelete, equalTo(null))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun writeTodoAndRead() = runBlocking {
+        val dateTimeProv = DateTimeProviderImpl()
+        val todoTask = TodoTask(
+            id = 1,
+            content = "Test Task",
+            note = "Test notes",
+            createdAt = dateTimeProv.now(),
+            updatedAt = dateTimeProv.now()
+        )
+
+        todoRepo.insertTask(todoTask)
+
+        val todoFlow = todoRepo.getAllTasksStream()
+        val todoRead = todoFlow.first()[0]
+        assertThat(todoRead, equalTo(todoTask))
     }
 }

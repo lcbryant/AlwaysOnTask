@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.core.data
+package com.lcbryant.alwaysontask.core.model
 
 data class User(
     val firebaseId: String? = "",
