@@ -1,6 +1,12 @@
 package com.lcbryant.alwaysontask.core.ui.composables
 
+import android.text.format.DateUtils
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -8,6 +14,7 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
@@ -19,15 +26,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun DurationRangeText(
-    timeString: String,
-    is24Hour: Boolean,
-    fontSizeRange: FontSizeRange,
+fun DueDateTimeText(
+    dueDate: LocalDate?,
+    dueTime: LocalTime?,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified,
+    color: Color = MaterialTheme.colorScheme.onSurface,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
     fontFamily: FontFamily? = null,
@@ -38,36 +48,46 @@ fun DurationRangeText(
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
-    style: TextStyle = LocalTextStyle.current,
+    style: TextStyle = MaterialTheme.typography.labelSmall,
 ) {
-    val text: String = if (is24Hour) {
-        timeString
-    } else {
-        val time = timeString.split(":")
-        val hour = time[0].toInt()
-        val minute = time[1]
-        val amPm = if (hour < 12) "AM" else "PM"
-        val hour12 = if (hour == 0) 12 else if (hour > 12) hour - 12 else hour
-        "$hour12:$minute $amPm"
+    if (dueDate == null || dueTime == null) {
+        return
     }
 
-    AutoResizeText(
-        text,
-        fontSizeRange,
-        modifier,
-        color,
-        fontStyle,
-        fontWeight,
-        fontFamily,
-        letterSpacing,
-        textDecoration,
-        textAlign,
-        lineHeight,
-        overflow,
-        softWrap,
-        maxLines,
-        style
-    )
+    val dateFormatter = DateTimeFormatter.ofPattern("MM/dd")
+    val timeFormatter = DateTimeFormatter.ofPattern("h:mm a")
+    val dueText = "Due ${
+        if (DateUtils.isToday(dueDate.toEpochDay())) {
+            "Today"
+        } else {
+            dueDate.format(dateFormatter)
+        }
+    } @ ${dueTime.format(timeFormatter)}"
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .then(modifier),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = dueText,
+            color = color,
+            fontStyle = fontStyle,
+            fontWeight = fontWeight,
+            fontFamily = fontFamily,
+            letterSpacing = letterSpacing,
+            textDecoration = textDecoration,
+            textAlign = textAlign,
+            lineHeight = lineHeight,
+            overflow = overflow,
+            softWrap = softWrap,
+            maxLines = maxLines,
+            style = style,
+        )
+    }
 }
 
 @Composable

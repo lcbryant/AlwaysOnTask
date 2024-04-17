@@ -30,4 +30,8 @@ class TodoTaskRepository @Inject constructor(private val todoTaskDao: TodoTaskDa
     override suspend fun deleteTask(todoTask: TodoTask) {
         todoTaskDao.delete(todoTask.toEntity())
     }
+
+    suspend fun nukeTable() {
+        todoTaskDao.nukeTable()
+    }
 }

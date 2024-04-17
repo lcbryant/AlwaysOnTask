@@ -120,8 +120,8 @@ val AotTypography = Typography(
     // Used for Tag
     labelSmall = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 10.sp,
-        lineHeight = 14.sp,
+        fontSize = 8.sp,
+        lineHeight = 12.sp,
         letterSpacing = 0.sp,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,

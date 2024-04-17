@@ -68,7 +68,10 @@ fun TodoTaskCreationButtonContent(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
-        Text(text = text)
+        Text(
+            text = text,
+        )
+        Spacer(modifier = Modifier.size(4.dp))
         Icon(painter = icon, contentDescription = iconDescription)
     }
 }

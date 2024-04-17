@@ -2,6 +2,7 @@ package com.lcbryant.alwaysontask.core.database
 
 import androidx.room.TypeConverter
 import com.lcbryant.alwaysontask.core.model.TodoTaskProgressStatus
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -55,5 +56,15 @@ class Converters {
     @TypeConverter
     fun toProgressStatus(value: String): TodoTaskProgressStatus {
         return TodoTaskProgressStatus.valueOf(value)
+    }
+
+    @TypeConverter
+    fun fromDuration(value: Duration): Long {
+        return value.toMinutes()
+    }
+
+    @TypeConverter
+    fun toDuration(value: Long): Duration {
+        return Duration.ofMinutes(value)
     }
 }

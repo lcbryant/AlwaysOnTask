@@ -1,5 +1,6 @@
 package com.lcbryant.alwaysontask.core.model
 
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -11,9 +12,7 @@ data class TodoTask(
     val id: Int = 0,
     // content is the main text of the task
     val content: String = "",
-    // notes is additional text for the task
-    val note: String = "",
-    val notesUpdatedAt: LocalDateTime? = null,
+    val duration: Duration,
 
     val isComplete: Boolean = false,
     val progressStatus: TodoTaskProgressStatus = TodoTaskProgressStatus.NOT_STARTED,

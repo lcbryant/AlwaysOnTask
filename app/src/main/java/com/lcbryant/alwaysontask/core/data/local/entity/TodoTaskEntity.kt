@@ -11,11 +11,11 @@ import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_FIREBASE_ID_COLUMN_N
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_FIREBASE_USER_ID_COLUMN_NAME
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_IS_SCHEDULED_COLUMN_NAME
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_LOCAL_USER_ID_COLUMN_NAME
-import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_NOTES_UPDATED_AT_COLUMN_NAME
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_PROGRESS_STATUS_COLUMN_NAME
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_TABLE_NAME
 import com.lcbryant.alwaysontask.core.data.common.TODO_TASK_UPDATED_AT_COLUMN_NAME
 import com.lcbryant.alwaysontask.core.model.TodoTaskProgressStatus
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -28,8 +28,7 @@ data class TodoTaskEntity(
     @ColumnInfo(TODO_TASK_FIREBASE_USER_ID_COLUMN_NAME) val firebaseUserId: String? = "",
 
     val content: String,
-    val notes: String?,
-    @ColumnInfo(TODO_TASK_NOTES_UPDATED_AT_COLUMN_NAME) val notesUpdatedAt: LocalDateTime?,
+    val duration: Duration,
 
     @ColumnInfo(TODO_TASK_PROGRESS_STATUS_COLUMN_NAME) val progressStatus: TodoTaskProgressStatus,
 

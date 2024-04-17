@@ -28,4 +28,7 @@ interface UserDao {
 
     @Delete
     suspend fun delete(userEntity: UserEntity)
+
+    @Query("DELETE FROM $USER_TABLE_NAME")
+    suspend fun nukeTable()
 }

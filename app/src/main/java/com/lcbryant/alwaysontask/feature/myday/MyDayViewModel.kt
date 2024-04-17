@@ -3,11 +3,13 @@ package com.lcbryant.alwaysontask.feature.myday
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcbryant.alwaysontask.core.data.repository.TodoTaskRepository
+import com.lcbryant.alwaysontask.core.model.TodoTask
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.Duration
 import java.time.Instant
 import java.time.LocalTime
 import java.time.ZoneId
@@ -22,6 +24,10 @@ class MyDayViewModel @Inject constructor(
 
     private val _addEditTaskUiState = MutableStateFlow(AddEditTaskUiState())
     val addEditTaskUiState = _addEditTaskUiState.asStateFlow()
+
+    private fun clearAddEditTaskUiState() {
+        _addEditTaskUiState.update { AddEditTaskUiState() }
+    }
 
     fun toggleAddEditTask() {
         _myDayUiState.update { it.copy(showAddEditTask = !it.showAddEditTask) }
@@ -61,14 +67,16 @@ class MyDayViewModel @Inject constructor(
         _addEditTaskUiState.update { it.copy(editContent = content) }
     }
 
-    fun onTaskNotesChanged(note: String) {
-        _addEditTaskUiState.update { it.copy(editNote = note) }
+    fun onDurationChanged(duration: Duration) {
+        _addEditTaskUiState.update { it.copy(editDuration = duration) }
     }
-
     fun onAddTask() {
+        // TODO: add validation
+        // TODO: figure out duration input
+
         val task = addEditTaskUiState.value.todoTask.copy(
             content = addEditTaskUiState.value.editContent,
-            note = addEditTaskUiState.value.editNote,
+            duration = addEditTaskUiState.value.editDuration,
             dueDate = addEditTaskUiState.value.dueDateInitial,
             dueTime = addEditTaskUiState.value.dueTimeInitial
         )
@@ -77,8 +85,39 @@ class MyDayViewModel @Inject constructor(
             todoTaskRepository.insertTask(task)
         }
 
+        clearAddEditTaskUiState()
         toggleAddEditTask()
     }
 
+    fun onDeleteTask(task: TodoTask) {
+        viewModelScope.launch {
+            todoTaskRepository.deleteTask(task)
+        }
+    }
 
+    fun onEditTask(task: TodoTask) {
+        _addEditTaskUiState.update {
+            it.copy(
+                editContent = task.content,
+                editDuration = task.duration,
+                dueDateInitial = task.dueDate,
+                dueTimeInitial = task.dueTime,
+                todoTask = task
+            )
+        }
+
+        toggleAddEditTask()
+    }
+
+    fun onTaskToggleComplete(task: TodoTask) {
+        viewModelScope.launch {
+            todoTaskRepository.updateTask(task.copy(isComplete = true))
+        }
+    }
+
+    fun onNukeTable() {
+        viewModelScope.launch {
+            todoTaskRepository.nukeTable()
+        }
+    }
 }

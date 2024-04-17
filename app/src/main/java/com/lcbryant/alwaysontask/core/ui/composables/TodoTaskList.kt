@@ -4,6 +4,8 @@ import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -24,16 +26,20 @@ fun TodoTaskList(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     reverseLayout: Boolean = false,
     verticalArrangement: Arrangement.Vertical = if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+    horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
     todoTaskStream: Flow<List<TodoTask>>,
-    onTodoTaskClick: (TodoTask) -> Unit,
+    onTodoTaskEdit: (TodoTask) -> Unit,
+    onTodoTaskDelete: (TodoTask) -> Unit,
+    onTodoTaskToggleComplete: (TodoTask) -> Unit,
 ) {
     val todoTasks by todoTaskStream.collectAsState(initial = emptyList())
 
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier
+            .padding(8.dp)
+            .width(300.dp),
         state = state,
         contentPadding = contentPadding,
         reverseLayout = reverseLayout,
@@ -45,8 +51,9 @@ fun TodoTaskList(
         items(todoTasks, key = {t -> t.id}) { todoTask ->
             TodoTaskDisplayable(
                 todoTask = todoTask,
-                onEdit = { /* TODO */ },
-                onDelete = { /* TODO */ },
+                onEdit = { onTodoTaskEdit(todoTask) },
+                onDelete = { onTodoTaskDelete(todoTask) },
+                onToggleComplete = { onTodoTaskToggleComplete(todoTask) },
             )
         }
     }

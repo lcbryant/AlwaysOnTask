@@ -25,4 +25,7 @@ interface TodoTaskDao {
 
     @Update
     suspend fun update(todoTaskEntity: TodoTaskEntity)
+
+    @Query("DELETE FROM $TODO_TASK_TABLE_NAME")
+    suspend fun nukeTable()
 }

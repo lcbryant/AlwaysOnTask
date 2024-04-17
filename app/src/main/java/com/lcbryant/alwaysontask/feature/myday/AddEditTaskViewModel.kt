@@ -59,10 +59,6 @@ class AddEditTaskViewModel @Inject constructor(
         _addEditTaskUiState.update { it.copy(editContent = content) }
     }
 
-    fun onTaskNotesChanged(note: String) {
-        _addEditTaskUiState.update { it.copy(editNote = note) }
-    }
-
     fun onAddTask() {
         val task = addEditTaskUiState.value.todoTask
 
