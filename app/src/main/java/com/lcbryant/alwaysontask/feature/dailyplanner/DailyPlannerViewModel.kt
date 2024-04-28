@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.feature.myday
+package com.lcbryant.alwaysontask.feature.dailyplanner
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,11 +16,11 @@ import java.time.ZoneId
 import javax.inject.Inject
 
 @HiltViewModel
-class MyDayViewModel @Inject constructor(
+class DailyPlannerViewModel @Inject constructor(
     private val todoTaskRepository: TodoTaskRepository,
 ) : ViewModel() {
-    private val _myDayUiState = MutableStateFlow(MyDayUiState(todoTaskRepository.getAllTasksStream()))
-    val myDayUiState = _myDayUiState.asStateFlow()
+    private val _dailyPlannerUiState = MutableStateFlow(DailyPlannerUiState(todoTaskRepository.getAllTasksStream()))
+    val myDayUiState = _dailyPlannerUiState.asStateFlow()
 
     private val _addEditTaskUiState = MutableStateFlow(AddEditTaskUiState())
     val addEditTaskUiState = _addEditTaskUiState.asStateFlow()
@@ -30,7 +30,7 @@ class MyDayViewModel @Inject constructor(
     }
 
     fun toggleAddEditTask() {
-        _myDayUiState.update { it.copy(showAddEditTask = !it.showAddEditTask) }
+        _dailyPlannerUiState.update { it.copy(showAddEditTask = !it.showAddEditTask) }
     }
 
     fun toggleDatePicker() {

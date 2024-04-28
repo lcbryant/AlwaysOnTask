@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import com.lcbryant.alwaysontask.core.data.repository.TodoTaskRepository
 import com.lcbryant.alwaysontask.core.database.LocalDatabase
 import com.lcbryant.alwaysontask.core.ui.theme.AlwaysOnTaskTheme
-import com.lcbryant.alwaysontask.feature.myday.MyDayScreen
-import com.lcbryant.alwaysontask.feature.myday.MyDayViewModel
+import com.lcbryant.alwaysontask.feature.dailyplanner.DailyPlannerScreen
+import com.lcbryant.alwaysontask.feature.dailyplanner.DailyPlannerViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,10 +15,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             AlwaysOnTaskTheme {
                 val localDb = LocalDatabase.getDb(context = this)
-                val viewModel = MyDayViewModel(
+                val viewModel = DailyPlannerViewModel(
                     todoTaskRepository = TodoTaskRepository(localDb.todoTaskDao())
                 )
-                MyDayScreen(myDayViewModel = viewModel)
+                DailyPlannerScreen(dailyPlannerViewModel = viewModel)
             }
         }
     }

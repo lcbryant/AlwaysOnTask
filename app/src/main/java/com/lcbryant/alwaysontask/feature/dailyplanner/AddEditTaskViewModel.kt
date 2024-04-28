@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.feature.myday
+package com.lcbryant.alwaysontask.feature.dailyplanner
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

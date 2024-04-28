@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.feature.myday
+package com.lcbryant.alwaysontask.feature.dailyplanner
 
 import com.lcbryant.alwaysontask.common.DateTimeProviderImpl
 import com.lcbryant.alwaysontask.core.model.TodoTask

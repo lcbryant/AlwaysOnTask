@@ -1,4 +1,4 @@
-package com.lcbryant.alwaysontask.feature.myday
+package com.lcbryant.alwaysontask.feature.dailyplanner
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun MyDayScreen(
+fun DailyPlannerScreen(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
@@ -44,7 +44,7 @@ fun MyDayScreen(
     containerColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = MaterialTheme.colorScheme.onBackground,
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    myDayViewModel: MyDayViewModel = viewModel(),
+    dailyPlannerViewModel: DailyPlannerViewModel = viewModel(),
 ) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
@@ -52,20 +52,20 @@ fun MyDayScreen(
     val showBottomSheet = {
         scope.launch {
             sheetState.show()
-        }.invokeOnCompletion { myDayViewModel.toggleAddEditTask() }
+        }.invokeOnCompletion { dailyPlannerViewModel.toggleAddEditTask() }
     }
 
     val hideBottomSheet = {
         scope.launch {
             sheetState.hide()
-        }.invokeOnCompletion { myDayViewModel.toggleAddEditTask() }
+        }.invokeOnCompletion { dailyPlannerViewModel.toggleAddEditTask() }
     }
 
     val isBottomSheetVisible = {
-        myDayViewModel.isAddEditTaskVisible() && sheetState.isVisible
+        dailyPlannerViewModel.isAddEditTaskVisible() && sheetState.isVisible
     }
 
-    val uiState by myDayViewModel.myDayUiState.collectAsState()
+    val uiState by dailyPlannerViewModel.myDayUiState.collectAsState()
 
     val lazyListState = rememberLazyListState()
 
@@ -100,7 +100,7 @@ fun MyDayScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    onClick = { myDayViewModel.onNukeTable() }
+                    onClick = { dailyPlannerViewModel.onNukeTable() }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.rounded_delete_24),
@@ -114,9 +114,9 @@ fun MyDayScreen(
                 state = lazyListState,
                 contentPadding = innerPadding,
                 todoTaskStream = uiState.todoTasks,
-                onTodoTaskDelete = { myDayViewModel.onDeleteTask(it) },
-                onTodoTaskEdit = { myDayViewModel.onEditTask(it) },
-                onTodoTaskToggleComplete = { myDayViewModel.onTaskToggleComplete(it) },
+                onTodoTaskDelete = { dailyPlannerViewModel.onDeleteTask(it) },
+                onTodoTaskEdit = { dailyPlannerViewModel.onEditTask(it) },
+                onTodoTaskToggleComplete = { dailyPlannerViewModel.onTaskToggleComplete(it) },
             )
         }
 
@@ -124,24 +124,24 @@ fun MyDayScreen(
             TodoTaskCreation(
                 onDismissRequest = { hideBottomSheet() },
                 addTaskCallback = {
-                    myDayViewModel.onAddTask()
+                    dailyPlannerViewModel.onAddTask()
                     hideBottomSheet()
                 },
-                toggleTimePicker = { myDayViewModel.toggleTimePicker() },
-                toggleDatePicker = { myDayViewModel.toggleDatePicker() },
-                onDateSelected = { myDayViewModel.onDateSelected(it) },
+                toggleTimePicker = { dailyPlannerViewModel.toggleTimePicker() },
+                toggleDatePicker = { dailyPlannerViewModel.toggleDatePicker() },
+                onDateSelected = { dailyPlannerViewModel.onDateSelected(it) },
                 onTimeSelected = { hour, min, is24hr ->
-                    myDayViewModel.onTimeSelected(
+                    dailyPlannerViewModel.onTimeSelected(
                         hour,
                         min,
                         is24hr
                     )
                 },
-                onContentChanged = { myDayViewModel.onTaskContentChanged(it) },
-                onDurationChanged = { myDayViewModel.onDurationChanged(it) },
-                isDatePickerVisible = { myDayViewModel.isDatePickerVisible() },
-                isTimePickerVisible = { myDayViewModel.isTimePickerVisible() },
-                state = myDayViewModel.addEditTaskUiState,
+                onContentChanged = { dailyPlannerViewModel.onTaskContentChanged(it) },
+                onDurationChanged = { dailyPlannerViewModel.onDurationChanged(it) },
+                isDatePickerVisible = { dailyPlannerViewModel.isDatePickerVisible() },
+                isTimePickerVisible = { dailyPlannerViewModel.isTimePickerVisible() },
+                state = dailyPlannerViewModel.addEditTaskUiState,
                 modifier = modifier,
                 sheetState = sheetState,
             )
